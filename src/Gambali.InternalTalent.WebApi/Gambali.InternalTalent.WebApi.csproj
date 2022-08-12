@@ -9,7 +9,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
+    <ProjectReference Include="..\Gambali.InternalTalent.Crosscutting\Gambali.InternalTalent.Crosscutting.csproj" />
+    <ProjectReference Include="..\Gambali.InternalTalent.Infra\Gambali.InternalTalent.Infra.csproj" />
   </ItemGroup>
 
 </Project>
