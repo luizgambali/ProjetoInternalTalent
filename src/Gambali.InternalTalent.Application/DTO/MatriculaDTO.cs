@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace Gambali.InternalTalent.Application.ViewModel
 {
-    public class MatriculaViewModel
+    public class MatriculaDTO
     {
         public int Id { get; set; }
-        public AlunoViewModel Aluno { get; set; }
-        public CursoViewModel Curso { get; set; }
+        public AlunoDto Aluno { get; set; }
+        public CursoDTO Curso { get; set; }
         public DateTime DataInscricao { get; set; }
         public DateTime? DataConclusao { get; set; }
     }

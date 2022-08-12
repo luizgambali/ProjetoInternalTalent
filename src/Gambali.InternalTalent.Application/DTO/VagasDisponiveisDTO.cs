@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Gambali.InternalTalent.Application.ViewModel
 {
-    public class VagasDisponiveisViewModel
+    public class VagasDisponiveisDTO
     {
-        public CursoViewModel Curso { get; set; }
+        public CursoDTO Curso { get; set; }
         public int VagasDisponiveis { get; set; }
     }
 }

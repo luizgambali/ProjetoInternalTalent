@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Gambali.InternalTalent.Application.ViewModel
 {
-    public class AlunoViewModel
+    public class AlunoDto
     {
 		public int Id { get; set; }
 

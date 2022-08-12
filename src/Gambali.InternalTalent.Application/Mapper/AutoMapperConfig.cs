@@ -8,9 +8,9 @@ namespace Gambali.InternalTalent.Application.Mapper
     {
         public AutomapperConfig()
         {
-            CreateMap<Aluno, AlunoViewModel>().ReverseMap();
-            CreateMap<Curso, CursoViewModel>().ReverseMap();
-            CreateMap<Matricula, MatriculaViewModel>().ReverseMap();
+            CreateMap<Aluno, AlunoDto>().ReverseMap();
+            CreateMap<Curso, CursoDTO>().ReverseMap();
+            CreateMap<Matricula, MatriculaDTO>().ReverseMap();
         }
     }
 }

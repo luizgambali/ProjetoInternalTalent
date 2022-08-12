@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Gambali.InternalTalent.Application.ViewModel
 {
-    public class RegistroViewModel
+    public class RegistroDTO
     {
         [Required]
         public int AlunoId { get; set; }

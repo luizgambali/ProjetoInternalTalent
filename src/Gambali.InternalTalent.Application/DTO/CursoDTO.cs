@@ -2,7 +2,7 @@
 
 namespace Gambali.InternalTalent.Application.ViewModel
 {
-    public class CursoViewModel
+    public class CursoDTO
     {
         public int Id { get; set; }
 
