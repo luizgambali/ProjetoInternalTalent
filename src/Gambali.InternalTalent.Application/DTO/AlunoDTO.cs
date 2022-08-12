@@ -1,9 +1,9 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace Gambali.InternalTalent.Application.ViewModel
+namespace Gambali.InternalTalent.Application.DTO
 {
-    public class AlunoDto
+    public class AlunoDTO
     {
 		public int Id { get; set; }
 

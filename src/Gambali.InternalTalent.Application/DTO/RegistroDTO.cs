@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Gambali.InternalTalent.Application.ViewModel
+namespace Gambali.InternalTalent.Application.DTO
 {
     public class RegistroDTO
     {

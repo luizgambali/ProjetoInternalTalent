@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using Gambali.InternalTalent.Application.ViewModel;
+using Gambali.InternalTalent.Application.DTO;
 using Gambali.InternalTalent.Domain.Models;
 
 namespace Gambali.InternalTalent.Application.Mapper
@@ -8,7 +8,7 @@ namespace Gambali.InternalTalent.Application.Mapper
     {
         public AutomapperConfig()
         {
-            CreateMap<Aluno, AlunoDto>().ReverseMap();
+            CreateMap<Aluno, AlunoDTO>().ReverseMap();
             CreateMap<Curso, CursoDTO>().ReverseMap();
             CreateMap<Matricula, MatriculaDTO>().ReverseMap();
         }

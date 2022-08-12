@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Gambali.InternalTalent.Application.ViewModel
+namespace Gambali.InternalTalent.Application.DTO
 {
     public class CursoDTO
     {
