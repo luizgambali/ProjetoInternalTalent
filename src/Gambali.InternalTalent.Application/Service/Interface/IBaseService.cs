@@ -12,6 +12,6 @@ namespace Gambali.InternalTalent.Application.Service.Interface
         Task<ResponseDTO> GetOneAsync(int id);
         Task<ResponseDTO> InsertAsync(T entity);
         Task<ResponseDTO> UpdateAsync(T entity);
-        Task<ResponseDTO> DeleteAsync(T entity);
+        Task<ResponseDTO> DeleteAsync(int id);
     }
 }

@@ -40,7 +40,7 @@ namespace Gambali.InternalTalent.Application.Service
                 }
 
             }
-            catch(Exception)
+            catch(Exception ex)
             {
                 return new ResponseDTO(false, "Erro ao inserir aluno");
             }
@@ -83,11 +83,11 @@ namespace Gambali.InternalTalent.Application.Service
             }
         }
 
-        public async Task<ResponseDTO> DeleteAsync(AlunoDTO entity)
+        public async Task<ResponseDTO> DeleteAsync(int id)
         {
             try
             {
-                var aluno = await _alunoRepository.GetOneAsync(entity.Id);
+                var aluno = await _alunoRepository.GetOneAsync(id);
 
                 if (aluno == null)
                     return new ResponseDTO(false, "Aluno não encontrado", null, 404);

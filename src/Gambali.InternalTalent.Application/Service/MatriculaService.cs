@@ -76,11 +76,11 @@ namespace Gambali.InternalTalent.Application.Service
             }
         }
 
-        public async Task<ResponseDTO> DeleteAsync(MatriculaDTO entity)
+        public async Task<ResponseDTO> DeleteAsync(int id)
         {
             try
             {
-                var matricula = await _matriculaRepository.GetOneAsync(entity.Id);
+                var matricula = await _matriculaRepository.GetOneAsync(id);
 
                 if (matricula == null)
                     return new ResponseDTO(false, "Matricula não encontrada", null, 404);

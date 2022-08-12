@@ -78,11 +78,11 @@ namespace Gambali.InternalTalent.Application.Service
             }
         }
 
-        public async Task<ResponseDTO> DeleteAsync(CursoDTO entity)
+        public async Task<ResponseDTO> DeleteAsync(int id)
         {
             try
             {
-                var curso = await _cursoRepository.GetOneAsync(entity.Id);
+                var curso = await _cursoRepository.GetOneAsync(id);
 
                 if (curso == null)
                     return new ResponseDTO(false, "Curso não encontrado", null, 404);
