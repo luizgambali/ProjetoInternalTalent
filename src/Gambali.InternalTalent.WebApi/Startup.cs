@@ -1,3 +1,4 @@
+using Gambali.InternalTalent.Application.Mapper;
 using Gambali.InternalTalent.WebApi.Configuration;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -38,7 +39,7 @@ namespace Gambali.InternalTalent.WebApi
             services.DatabaseConfig(Configuration);
             services.WebApiConfig();
             services.AddSwaggerConfig();
-            services.AddAutoMapper(typeof(Startup));
+            services.AddAutoMapper(typeof(AutomapperConfig));
             services.ResolveDependencies();
 
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
