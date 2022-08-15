@@ -35,13 +35,13 @@ namespace Gambali.InternalTalent.Application.Service
                 }
                 else
                 {
-                    return new ResponseDTO(false, "Dados inválidos!");
+                    return new ResponseDTO(false, "Dados inválidos!", null, 400);
                 }
 
             }
             catch (Exception)
             {
-                return new ResponseDTO(false, "Erro ao inserir matricula");
+                return new ResponseDTO(false, "Erro ao inserir matricula", null, 500);
             }
         }
 
@@ -53,7 +53,7 @@ namespace Gambali.InternalTalent.Application.Service
 
                 if (matricula == null)
                 {
-                    return new ResponseDTO(false, "Matricula não encontrado!");
+                    return new ResponseDTO(false, "Matricula não encontrada!", null, 404);
                 }
 
                 matricula.DataInscricao = entity.DataInscricao;
@@ -66,13 +66,13 @@ namespace Gambali.InternalTalent.Application.Service
                 }
                 else
                 {
-                    return new ResponseDTO(false, "Dados inválidos!");
+                    return new ResponseDTO(false, "Dados inválidos!", null, 400);
                 }
 
             }
             catch (Exception)
             {
-                return new ResponseDTO(false, "Erro ao atualizar dados da matricula");
+                return new ResponseDTO(false, "Erro ao atualizar dados da matricula", null, 500);
             }
         }
 
@@ -92,7 +92,7 @@ namespace Gambali.InternalTalent.Application.Service
             }
             catch (Exception)
             {
-                return new ResponseDTO(false, "Erro ao excluir matricula");
+                return new ResponseDTO(false, "Erro ao excluir matricula", null, 500);
             }
         }
 

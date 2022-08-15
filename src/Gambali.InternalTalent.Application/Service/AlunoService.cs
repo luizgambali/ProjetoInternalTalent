@@ -36,13 +36,13 @@ namespace Gambali.InternalTalent.Application.Service
                 }
                 else
                 {
-                    return new ResponseDTO(false, "Dados inválidos!");
+                    return new ResponseDTO(false, "Dados inválidos!", null, 400);
                 }
 
             }
             catch(Exception ex)
             {
-                return new ResponseDTO(false, "Erro ao inserir aluno");
+                return new ResponseDTO(false, "Erro ao inserir aluno", null, 500);
             }
         }
 
@@ -54,7 +54,7 @@ namespace Gambali.InternalTalent.Application.Service
 
                 if (aluno == null)
                 {
-                    return new ResponseDTO(false, "Aluno não encontrado!");
+                    return new ResponseDTO(false, "Aluno não encontrado!", null, 404);
                 }
 
                 aluno.Nome = entity.Nome;
@@ -73,13 +73,13 @@ namespace Gambali.InternalTalent.Application.Service
                 }
                 else
                 {
-                    return new ResponseDTO(false, "Dados inválidos!");
+                    return new ResponseDTO(false, "Dados inválidos!", null, 400);
                 }
 
             }
             catch(Exception)
             {
-                return new ResponseDTO(false, "Erro ao atualizar dados do aluno");
+                return new ResponseDTO(false, "Erro ao atualizar dados do aluno", null, 500);
             }
         }
 
@@ -99,7 +99,7 @@ namespace Gambali.InternalTalent.Application.Service
             }
             catch(Exception)
             {
-                return new ResponseDTO(false, "Erro ao excluir aluno");
+                return new ResponseDTO(false, "Erro ao excluir aluno", null, 500);
             }
         }
 
@@ -108,7 +108,7 @@ namespace Gambali.InternalTalent.Application.Service
             var alunos = await _alunoRepository.GetAllAsync();
 
             if (alunos == null || alunos.Count() == 0)
-                return new ResponseDTO(false, "Nenhum aluno cadastrado", null);
+                return new ResponseDTO(false, "Nenhum aluno cadastrado", null, 404);
             else
                 return new ResponseDTO(true, "", _mapper.Map<IEnumerable<Aluno>>(alunos));
         }
@@ -118,7 +118,7 @@ namespace Gambali.InternalTalent.Application.Service
             var aluno = await _alunoRepository.GetOneAsync(id);
 
             if (aluno == null)
-                return new ResponseDTO(false, "Aluno não encontrado", null);
+                return new ResponseDTO(false, "Aluno não encontrado", null, 404);
             else
                 return new ResponseDTO(true, "", _mapper.Map<Aluno>(aluno));
         }

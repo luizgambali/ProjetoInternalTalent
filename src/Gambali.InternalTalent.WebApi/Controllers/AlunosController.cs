@@ -8,7 +8,7 @@ namespace Gambali.InternalTalent.WebApi.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class AlunosController : Controller
+    public class AlunosController : BaseController
     {
         private readonly IAlunoService _alunoService;
         private readonly ILogger<AlunosController> _log;
@@ -21,16 +21,14 @@ namespace Gambali.InternalTalent.WebApi.Controllers
         }
 
         [HttpGet("{id:int}")]
-        public async Task<ActionResult<ResponseDTO>> GetByID(int Id)
+        public async Task<ActionResult<ResponseDTO>> GetByID(int id)
         {
-            _log.LogDebug($"Recebendo requisição para obter aluno por id {Id}");
+            _log.LogDebug($"Recebendo requisição para obter aluno por id {id}");
 
-            var resposta = await _alunoService.GetOneAsync(Id);
+            var resposta = await _alunoService.GetOneAsync(id);
 
-            if (resposta.ResponseOk == false && resposta.ResultObject == null)
-                return NotFound();
+            return CustomResponse(resposta);
 
-            return Ok(resposta);
         }
 
         [HttpGet]
@@ -40,7 +38,7 @@ namespace Gambali.InternalTalent.WebApi.Controllers
 
             var resposta = await _alunoService.GetAllAsync();
 
-            return Ok(resposta);
+            return CustomResponse(resposta);
         }
 
         [HttpPost]
@@ -50,10 +48,7 @@ namespace Gambali.InternalTalent.WebApi.Controllers
 
             var resposta = await _alunoService.InsertAsync(aluno);
 
-            if (resposta.ResponseOk)
-                return Ok(resposta);
-            else
-                return BadRequest(resposta);
+            return CustomResponse(resposta);
         }
         [HttpPut]
         public async Task<ActionResult<ResponseDTO>> Update(int id, [FromBody] AlunoDTO aluno)
@@ -65,15 +60,7 @@ namespace Gambali.InternalTalent.WebApi.Controllers
 
             var resposta = await _alunoService.GetOneAsync(id);
 
-            if (resposta.ResponseOk == false && resposta.ResultObject == null)
-                return NotFound();
-
-            var result = await _alunoService.UpdateAsync(aluno);
-
-            if (result.ResponseOk)
-                return Ok(result);
-            else
-                return BadRequest(result);
+            return CustomResponse(resposta);
         }
 
         [HttpDelete("{id:int}")]
@@ -83,15 +70,7 @@ namespace Gambali.InternalTalent.WebApi.Controllers
 
             var resposta = await _alunoService.GetOneAsync(id);
 
-            if (resposta.ResponseOk == false && resposta.ResultObject == null)
-                return NotFound();
-            
-            var result = await _alunoService.DeleteAsync(id);
-
-            if (result.ResponseOk)
-                return Ok(result);
-            else
-                return BadRequest(result);
+            return CustomResponse(resposta);
         }
     }
 }

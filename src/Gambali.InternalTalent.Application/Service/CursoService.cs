@@ -35,13 +35,13 @@ namespace Gambali.InternalTalent.Application.Service
                 }
                 else
                 {
-                    return new ResponseDTO(false, "Dados inválidos!");
+                    return new ResponseDTO(false, "Dados inválidos!", null, 400);
                 }
 
             }
             catch (Exception)
             {
-                return new ResponseDTO(false, "Erro ao inserir curso");
+                return new ResponseDTO(false, "Erro ao inserir curso", null, 500);
             }
         }
 
@@ -53,7 +53,7 @@ namespace Gambali.InternalTalent.Application.Service
 
                 if (curso == null)
                 {
-                    return new ResponseDTO(false, "Curso não encontrado!");
+                    return new ResponseDTO(false, "Curso não encontrado!", null, 404);
                 }
 
                 curso.Nome = entity.Nome;
@@ -68,13 +68,13 @@ namespace Gambali.InternalTalent.Application.Service
                 }
                 else
                 {
-                    return new ResponseDTO(false, "Dados inválidos!");
+                    return new ResponseDTO(false, "Dados inválidos!", null, 400);
                 }
 
             }
             catch (Exception)
             {
-                return new ResponseDTO(false, "Erro ao atualizar dados do curso");
+                return new ResponseDTO(false, "Erro ao atualizar dados do curso", null, 500);
             }
         }
 
@@ -94,7 +94,7 @@ namespace Gambali.InternalTalent.Application.Service
             }
             catch (Exception)
             {
-                return new ResponseDTO(false, "Erro ao excluir curso");
+                return new ResponseDTO(false, "Erro ao excluir curso", null, 500);
             }
         }
 
