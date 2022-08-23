@@ -58,7 +58,7 @@ namespace Gambali.InternalTalent.WebApi.Controllers
             if (id != matricula.Id)
                 return BadRequest("O id informado como parametro é diferente do id informado para a matricula");
 
-            var resposta = await _matriculaService.GetOneAsync(id);
+            var resposta = await _matriculaService.UpdateAsync(matricula);
 
             return CustomResponse(resposta);
         }
@@ -68,7 +68,7 @@ namespace Gambali.InternalTalent.WebApi.Controllers
         {
             _log.LogDebug($"Recebendo requisição para atualizar dados de uma matricula");
 
-            var resposta = await _matriculaService.GetOneAsync(id);
+            var resposta = await _matriculaService.DeleteAsync(id);
 
             return CustomResponse(resposta);
         }

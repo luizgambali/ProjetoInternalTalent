@@ -58,7 +58,7 @@ namespace Gambali.InternalTalent.WebApi.Controllers
             if (id != curso.Id)
                 return BadRequest("O id informado como parametro é diferente do id informado para o curso");
 
-            var resposta = await _cursoService.GetOneAsync(id);
+            var resposta = await _cursoService.UpdateAsync(curso);
 
             return CustomResponse(resposta);
         }
@@ -68,7 +68,7 @@ namespace Gambali.InternalTalent.WebApi.Controllers
         {
             _log.LogDebug($"Recebendo requisição para atualizar dados de um curso");
 
-            var resposta = await _cursoService.GetOneAsync(id);
+            var resposta = await _cursoService.DeleteAsync(id);
 
             return CustomResponse(resposta);
         }
