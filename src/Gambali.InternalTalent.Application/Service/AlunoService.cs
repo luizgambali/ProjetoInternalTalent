@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Gambali.InternalTalent.Application.DTO;
+using Gambali.InternalTalent.Application.Mapper;
 using Gambali.InternalTalent.Application.Service.Interface;
 using Gambali.InternalTalent.Domain.Interfaces;
 using Gambali.InternalTalent.Domain.Models;
