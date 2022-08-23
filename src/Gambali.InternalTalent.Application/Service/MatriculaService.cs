@@ -14,11 +14,20 @@ namespace Gambali.InternalTalent.Application.Service
     public class MatriculaService : IMatriculaService
     {
         private readonly IMatriculaRepository _matriculaRepository;
+        private readonly IAlunoRepository _alunoRepository;
+        private readonly ICursoRepository _cursoRepository;
+
         private readonly IMapper _mapper;
 
-        public MatriculaService(IMatriculaRepository matriculaRepository, IMapper mapper)
+        public MatriculaService(IMatriculaRepository matriculaRepository, 
+                                IAlunoRepository alunoRepository,
+                                ICursoRepository cursoRepository,
+                                IMapper mapper)
         {
             _matriculaRepository = matriculaRepository;
+            _cursoRepository = cursoRepository;
+            _alunoRepository = alunoRepository;
+
             _mapper = mapper;
         }
 
@@ -30,7 +39,17 @@ namespace Gambali.InternalTalent.Application.Service
 
                 if (result.Validate())
                 {
+                    var aluno = await _alunoRepository.GetOneAsync(entity.Aluno.Id);
+                    var curso = await _cursoRepository.GetOneAsync(entity.Curso.Id);
+
+                    if (aluno == null)
+                        return new ResponseDTO(false, "Aluno não cadastrado", entity, 404);
+
+                    if (curso == null)
+                        return new ResponseDTO(false, "Curso não cadastrado", entity, 404);
+
                     var matricula = await _matriculaRepository.InsertAsync(result);
+
                     return new ResponseDTO(true, "Matricula inserido com sucesso!", _mapper.Map<MatriculaDTO>(matricula));
                 }
                 else
@@ -39,7 +58,7 @@ namespace Gambali.InternalTalent.Application.Service
                 }
 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 return new ResponseDTO(false, "Erro ao inserir matricula", null, 500);
             }
