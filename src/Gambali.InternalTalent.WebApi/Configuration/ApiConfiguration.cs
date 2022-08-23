@@ -35,7 +35,9 @@ namespace Gambali.InternalTalent.WebApi.Configuration
 
         public static IServiceCollection DatabaseConfig(this IServiceCollection services, IConfiguration configuration)
         {
-            services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
+            services.AddDbContext<ApplicationDbContext>(options =>
+                                                        options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")),
+                                                        optionsLifetime: ServiceLifetime.Transient);
             return services;
         }
 

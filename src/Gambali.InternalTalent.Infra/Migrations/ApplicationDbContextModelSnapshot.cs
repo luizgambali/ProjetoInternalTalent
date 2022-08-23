@@ -98,6 +98,12 @@ namespace Gambali.InternalTalent.Infra.Migrations
 
             modelBuilder.Entity("Gambali.InternalTalent.Domain.Models.Matricula", b =>
                 {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasColumnName("Id")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
                     b.Property<int>("AlunoId")
                         .HasColumnType("int")
                         .HasColumnName("AlunoId");
@@ -114,10 +120,9 @@ namespace Gambali.InternalTalent.Infra.Migrations
                         .HasColumnType("datetime2")
                         .HasColumnName("DataInscricao");
 
-                    b.Property<int>("Id")
-                        .HasColumnType("int");
+                    b.HasKey("Id");
 
-                    b.HasKey("AlunoId", "CursoId");
+                    b.HasIndex("AlunoId");
 
                     b.HasIndex("CursoId");
 

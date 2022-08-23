@@ -3,15 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.32602.291
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gambali.InternalTalent.Domain", "src\Gambali.InternalTalent.Domain\Gambali.InternalTalent.Domain.csproj", "{078C9E20-B79D-413A-976A-0770A178CC8B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gambali.InternalTalent.Domain", "src\Gambali.InternalTalent.Domain\Gambali.InternalTalent.Domain.csproj", "{078C9E20-B79D-413A-976A-0770A178CC8B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gambali.InternalTalent.Application", "src\Gambali.InternalTalent.Application\Gambali.InternalTalent.Application.csproj", "{DF15794E-AF8D-430F-AB56-526397B46C3F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gambali.InternalTalent.Application", "src\Gambali.InternalTalent.Application\Gambali.InternalTalent.Application.csproj", "{DF15794E-AF8D-430F-AB56-526397B46C3F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gambali.InternalTalent.Infra", "src\Gambali.InternalTalent.Infra\Gambali.InternalTalent.Infra.csproj", "{805054A6-0C09-4881-B524-7AF2CF68A893}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gambali.InternalTalent.Infra", "src\Gambali.InternalTalent.Infra\Gambali.InternalTalent.Infra.csproj", "{805054A6-0C09-4881-B524-7AF2CF68A893}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gambali.InternalTalent.WebApi", "src\Gambali.InternalTalent.WebApi\Gambali.InternalTalent.WebApi.csproj", "{56282BDD-5583-431F-90C0-EE0738ADABEB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gambali.InternalTalent.WebApi", "src\Gambali.InternalTalent.WebApi\Gambali.InternalTalent.WebApi.csproj", "{56282BDD-5583-431F-90C0-EE0738ADABEB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gambali.InternalTalent.Crosscutting", "src\Gambali.InternalTalent.Crosscutting\Gambali.InternalTalent.Crosscutting.csproj", "{A605B757-F516-4ACC-9A0C-32A236FDF7E5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gambali.InternalTalent.Crosscutting", "src\Gambali.InternalTalent.Crosscutting\Gambali.InternalTalent.Crosscutting.csproj", "{A605B757-F516-4ACC-9A0C-32A236FDF7E5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gambali.InternalTalent.Application.Test", "src\Gambali.InternalTalent.Application.Test\Gambali.InternalTalent.Application.Test.csproj", "{9A26765C-1325-427C-A56E-6059E2EEFB3F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{A605B757-F516-4ACC-9A0C-32A236FDF7E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A605B757-F516-4ACC-9A0C-32A236FDF7E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A605B757-F516-4ACC-9A0C-32A236FDF7E5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9A26765C-1325-427C-A56E-6059E2EEFB3F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9A26765C-1325-427C-A56E-6059E2EEFB3F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9A26765C-1325-427C-A56E-6059E2EEFB3F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9A26765C-1325-427C-A56E-6059E2EEFB3F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

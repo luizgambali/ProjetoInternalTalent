@@ -47,15 +47,16 @@ namespace Gambali.InternalTalent.Infra.Migrations
                 name: "Matricula",
                 columns: table => new
                 {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     AlunoId = table.Column<int>(type: "int", nullable: false),
                     CursoId = table.Column<int>(type: "int", nullable: false),
                     DataInscricao = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    DataConclusao = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    Id = table.Column<int>(type: "int", nullable: false)
+                    DataConclusao = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Matricula", x => new { x.AlunoId, x.CursoId });
+                    table.PrimaryKey("PK_Matricula", x => x.Id);
                     table.ForeignKey(
                         name: "FK_Matricula_Alunos_AlunoId",
                         column: x => x.AlunoId,
@@ -69,6 +70,11 @@ namespace Gambali.InternalTalent.Infra.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Matricula_AlunoId",
+                table: "Matricula",
+                column: "AlunoId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Matricula_CursoId",

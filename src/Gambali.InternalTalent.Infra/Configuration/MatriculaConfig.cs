@@ -9,8 +9,9 @@ namespace Gambali.InternalTalent.Infra.Configuration
         public void Configure(EntityTypeBuilder<Matricula> builder)
         {
             builder.ToTable("Matricula");
-            builder.HasKey(k => new { k.AlunoId, k.CursoId});
+            builder.HasKey(k => k.Id);
 
+            builder.Property(p => p.Id).HasColumnName("Id").HasColumnType("int").IsRequired();
             builder.Property(p => p.AlunoId).HasColumnName("AlunoId").HasColumnType("int").IsRequired();
             builder.Property(p => p.CursoId).HasColumnName("CursoId").HasColumnType("int").IsRequired();
             builder.Property(p => p.DataInscricao).HasColumnName("DataInscricao").HasColumnType("datetime2").IsRequired();
