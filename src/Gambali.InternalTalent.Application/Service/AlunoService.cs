@@ -111,7 +111,7 @@ namespace Gambali.InternalTalent.Application.Service
             if (alunos == null || alunos.Count() == 0)
                 return new ResponseDTO(false, "Nenhum aluno cadastrado", null, 404);
             else
-                return new ResponseDTO(true, "", _mapper.Map<IEnumerable<Aluno>>(alunos));
+                return new ResponseDTO(true, "", _mapper.Map<IEnumerable<AlunoDTO>>(alunos));
         }
 
         public async Task<ResponseDTO> GetOneAsync(int id)
@@ -121,7 +121,7 @@ namespace Gambali.InternalTalent.Application.Service
             if (aluno == null)
                 return new ResponseDTO(false, "Aluno não encontrado", null, 404);
             else
-                return new ResponseDTO(true, "", _mapper.Map<Aluno>(aluno));
+                return new ResponseDTO(true, "", _mapper.Map<AlunoDTO>(aluno));
         }
 
 

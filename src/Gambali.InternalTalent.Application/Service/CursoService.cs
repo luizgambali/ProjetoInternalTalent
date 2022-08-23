@@ -102,13 +102,17 @@ namespace Gambali.InternalTalent.Application.Service
         {
             var cursos = await _cursoRepository.GetAllAsync();
 
-            return new ResponseDTO(true, "", _mapper.Map<IEnumerable<Curso>>(cursos));
+            return new ResponseDTO(true, "", _mapper.Map<IEnumerable<CursoDTO>>(cursos));
         }
 
         public async Task<ResponseDTO> GetOneAsync(int id)
         {
             var curso = await _cursoRepository.GetOneAsync(id);
-            return new ResponseDTO(true, "", _mapper.Map<Curso>(curso));
+
+            if (curso == null)
+                return new ResponseDTO(false, "Curso não encontrado", null, 404);
+
+            return new ResponseDTO(true, "", _mapper.Map<CursoDTO>(curso));
         }
     }
 }

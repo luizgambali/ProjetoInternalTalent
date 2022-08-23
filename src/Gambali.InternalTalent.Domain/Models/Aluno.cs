@@ -24,7 +24,7 @@ namespace Gambali.InternalTalent.Domain.Models
         {
 			this.Nome = nome;
 			this.Email = email;
-			this.DataNascimento = DataNascimento;
+			this.DataNascimento = dataNascimento;
         }
 
 

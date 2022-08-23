@@ -48,6 +48,9 @@ namespace Gambali.InternalTalent.Application.Service
                     if (curso == null)
                         return new ResponseDTO(false, "Curso não cadastrado", entity, 404);
 
+                    result.Aluno = aluno;
+                    result.Curso = curso;
+
                     var matricula = await _matriculaRepository.InsertAsync(result);
 
                     return new ResponseDTO(true, "Matricula inserido com sucesso!", _mapper.Map<MatriculaDTO>(matricula));
@@ -119,13 +122,17 @@ namespace Gambali.InternalTalent.Application.Service
         {
             var matriculas = await _matriculaRepository.GetAllAsync();
 
-            return new ResponseDTO(true, "", _mapper.Map<IEnumerable<Matricula>>(matriculas));
+            return new ResponseDTO(true, "", _mapper.Map<IEnumerable<MatriculaDTO>>(matriculas));
         }
 
         public async Task<ResponseDTO> GetOneAsync(int id)
         {
             var matricula = await _matriculaRepository.GetOneAsync(id);
-            return new ResponseDTO(true, "", _mapper.Map<Matricula>(matricula));
+
+            if (matricula == null)
+                return new ResponseDTO(false, "Matricula não encontrada", null, 404);
+
+            return new ResponseDTO(true, "", _mapper.Map<MatriculaDTO>(matricula));
         }
     }
 }
