@@ -1,0 +1,265 @@
+
+*****************************************************************************************************************
+******************************************       RESUMO PRATICO        ******************************************
+***************************************************************************************************************** 
+
+Para instalar o Docker no wsl:
+
+	sudo apt update
+	sudo apt install apt-transport-https ca-certificates curl software-properties-common
+	sudo apt install build-essential
+	curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add
+	sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+	sudo apt update
+	sudo apt install docker
+
+Para reiniciar o WSL:
+
+	exit (para sair da sessão atual do WSL)
+	wsl --shutdown
+
+	esperar alguns segundos, e entar novamente
+
+	wsl
+ 
+Criar a imagem e rodar:
+
+	Na pasta em que está o Dockerfile, rodar:
+
+	docker build --network host -t <<tag-da-imagem>> .
+
+	Para rodar o container, da imagem:
+
+	docker run -d -p 5000:80 --name <<nome-do-container>> --rm <<nome-da-imagem>>
+
+
+Para listar as imagens:
+
+	docker images
+	
+Para listar os containers:
+
+	docker ps -a
+	
+PAra remover todos os containers:
+
+	docker rm -f $(docker ps -a -q)
+
+Para remover todas as imagens:
+
+	docker rmi -f $(docker images)
+	
+*****************************************************************************************************************
+******************************************      CONTEUDO DO CURSO      ******************************************
+***************************************************************************************************************** 
+
+Comandos básicos:
+
+docker <<parametros>>
+
+	ps ou container ls: mostra as imagens que estão rodando
+
+		-a: mostra todos os containers já executados na maquina
+	
+		docker ps -a
+		docker container ls
+	
+	images: mostra as images que eu tenho na minha maquina
+	
+	run: Cria e roda um container, e para sua execução logo a seguir. Sempre vai criar um novo container Passar parametro <<image>> e opções abaixo
+
+		-it : modo iterativo, fica rodando no terminal que você abriu
+		-p: porta, especifica a porta, abre a porta 80 (80:80 quer dizer: a porta 80 do container será exporta na porta 80 do meu computador)
+		
+			exemplo: docker run -d -p 3000:80 nginx
+		
+			Executara o container em background, e a porta 80 do container será refletida na porta 3000 do meu computador
+			
+		-d: roda o container em background (não fica preso no terminal)
+		
+		--name: especifica o nome do container para execução, que ficará visivel no "docker ps". Se não for passado, assume um nome aleatório
+		
+	
+		docker run -d -p 5000:80 --name meu_container container_para_rodar 
+	
+	stop: para a execução de um container
+	
+		docker stop meu_container
+	
+	start <<id/image>>: Inicia um container já executado, sem criar um novo
+	
+		docker start meu_container
+	
+	logs <<id>>: exibe os logs do container
+	
+		-f: fica exibindo os logs no terminal
+		
+		docker logs -f
+		
+	rm: remover um container 
+	
+		-rm <<id>>
+		-f: força a remoção do container, mesmo se ele estiver em execução
+	
+		docker rm -f <<nome-ou-id-do-container>>
+
+		para remover todos os containers que estão rodando:
+
+		docker rm -f $(docker ps -a -q)
+	
+	pull: faz o download de uma imagem, assim o docker não precisa toda vez ir lá no hub.docker.com e baixa-la de novo. Ela fica no PC
+	
+		docker pull <<nome-da-imagem>>
+	
+Criando uma imagem
+
+	Criar um arquivo Dockerfile, na pasta base da aplicação. Dentro dele, há algumas opções de comando:
+	
+		FROM <<nome da imagem>>
+		WORKDIR <<pasta de trabalho>>
+		COPY <<copia os arquivos>>
+		EXPOSE <<porta a ser exposta>>
+		ENV <<variavel de ambiente = valor>>
+		RUN <<executa uma ação>>
+		ENTRYPOINT ["comando","parametro1","parametro2",...]
+		# <<comentario>>
+		
+		Exemplo de um arquivo Dockerfile
+		
+			#define o nome da imagem
+			FROM node	
+			#prepara a pasta de trabalho
+			WORKDIR /app
+			#copia os arquivos package*.json para a pasta /app
+			COPY package*.json .
+			#roda o npm install
+			RUN npm install
+			#copia os demais arquivos para a pasta raiz
+			COPY . .
+			#define a porta que vai rodar o container
+			EXPOSE 3000
+			#executa o comando
+			CMD ["node", "app.js"]
+	
+	Antes de executar a imagem pela primeira vez, usamos o comando docker build <<diretorio da imagem>>
+	Para executar a imagem, usa-se normalmente o comando docker run <<nome da imagem>>
+	
+		docker build .
+	
+		docker build -t <nome da imagem> .
+	
+		docker build --network host -t <nome da imagem> .
+	
+		docker run -d -p 5000:80 <<id>>
+		
+Download de uma imagem
+
+	docker pull <<imagem>>
+	
+Renomeando uma imagem
+
+	Para renomear uma imagem já criada:
+	
+		docker tag <<id_da_imagem>> <<nome>>
+		docker tag <<id_da_imagem>> <<nome>>:<<tag>>
+	
+		Exemplo: docker tag 123wda4424 minha_imagem
+	
+	Para nomear uma imagem no build:
+	
+		docker build -t <nome da imagem> .
+
+Removendo imagens
+
+	docker rmi <imagem>
+	
+	docker rmi -f <imagem> 
+	
+Removendo imagens e containers não utilizados
+
+	docker system prune
+	
+	remove imagens, containers e networks não utilizados
+	
+Removendo o container após utilização
+
+	usar a flar -rm no docker run. Assim, após dar stop no container, ele não vai mais ficar aparecendo no docker ps.
+	Economiza espaço, pq já remove o container após a utilização!
+	
+	docker run -d -p 5000:80 --name meu_container -rm container_para_rodar 
+	
+Copiando arquivos do container
+
+	docker cp <container>:pasta <destino>
+	
+	docker cp meucontainer:/src/files/arquivo.txt ./copia/
+	
+Analise de container
+
+	docker top <container> -> quando ele foi iniciado, id do processo,cmd que está rodando, etc
+	
+	docker inspect <container> -> como o container foi configurado
+	
+	docker stats -> status dos processos que estão sendo executados, quais containers estão rodando, memoria, etc em tempo real
+	
+	
+Volumes
+
+	Forma pratica de persistir dados. Os dados do container são gravados em volumes. O volume fica separado do container.
+	O volume fica armazenado em uma pasta do nosso computador. Pode-se fazer backup desse volume e reutiliza-lo em outra
+	instancia/container depois.
+	
+	Tipos:
+	
+		Anonimos: criados pela flag -v, com um nome aleatório
+		Nomeados: nós damos os nomes para os volumes
+		Bind Mounts: grava os dados em nossa maquina (o docker nao gerencia), informamos um diretorio para este fim
+		
+	
+	docker run -v /data
+	
+		cria um container anonimo
+		
+	docker run -v nomedovolume:/data
+	
+		cria um volume com um nome especifico, informado em nomedovolume
+	
+	docker volume ls 
+	
+		exibe todos os volumas criados
+	
+	docker volume create nomevolume
+	
+		cria um volume
+		
+	docker volume rm nomevolume
+		
+		apaga um volume
+		
+	docker volume rm prune
+	
+		apaga todos os volumes não utilizados
+
+	docker volume rm $(docker volume ls -q)
+
+		apaga todos os volumes listados no ls
+		
+Redes
+
+	Forma de comunicação com o container e do container com o mundo externo. O mais comum é o bridge
+	
+	docker network ls
+	
+		Lista as redes disponíveis (padrão do docker, já vem 4 redes, uma de cada tipo na lista)
+		
+	docker network create nomerede
+	
+		Cria uma nova rede (por padrão, bridge)
+		
+	docker network rm nomerede
+	
+		Excluir uma rede
+		
+	docker network prune
+	
+		Remove todas as redes utilizadas
