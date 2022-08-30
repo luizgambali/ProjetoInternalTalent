@@ -23,36 +23,5 @@ namespace Gambali.InternalTalent.Infra.Repository
             return await _dbSet.Include(i => i.Aluno).Include(i => i.Curso).ToListAsync();
         }
 
-        public async Task<bool> CancelarMatriculasAluno(int alunoId)
-        {
-            var matriculas = await _dbSet.Where(p => p.AlunoId == alunoId).ToListAsync();
-
-            if (matriculas != null && matriculas.Count > 0)
-            {
-                foreach(var matricula in matriculas)
-                {
-                    matricula.DataConclusao = DateTime.Now;
-                    await UpdateAsync(matricula);
-                }
-            }
-
-            return true;
-        }
-
-        public async Task<bool> CancelarMatriculasCurso(int cursoId)
-        {
-            var matriculas = await _dbSet.Where(p => p.CursoId == cursoId).ToListAsync();
-
-            if (matriculas != null && matriculas.Count > 0)
-            {
-                foreach (var matricula in matriculas)
-                {
-                    matricula.DataConclusao = DateTime.Now;
-                    await UpdateAsync(matricula);
-                }
-            }
-
-            return true;
-        }
     }
 }

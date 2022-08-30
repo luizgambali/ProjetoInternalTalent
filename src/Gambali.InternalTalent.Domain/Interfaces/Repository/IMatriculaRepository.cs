@@ -5,7 +5,5 @@ namespace Gambali.InternalTalent.Domain.Interfaces
 {
     public interface IMatriculaRepository: IBaseRepository<Matricula>
     {
-        Task<bool> CancelarMatriculasCurso(int cursoId);
-        Task<bool> CancelarMatriculasAluno(int alunoId);
     }
 }
