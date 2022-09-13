@@ -28,5 +28,6 @@ RUN dotnet publish "Gambali.InternalTalent.WebApi.csproj" -c Release -o /app/pub
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
+ENV ASPNETCORE_ENVIRONMENT=Local
 ENTRYPOINT ["dotnet", "Gambali.InternalTalent.WebApi.dll"]
 
