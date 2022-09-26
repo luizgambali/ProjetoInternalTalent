@@ -11,7 +11,7 @@ namespace Gambali.InternalTalent.Infra.Configuration
             builder.ToTable("Curso");
             builder.HasKey(k => k.Id);
 
-            builder.Property(p => p.Id).HasColumnName("Id").HasColumnType("int").IsRequired();
+            builder.Property(p => p.Id).HasColumnName("Id").IsRequired();
             builder.Property(p => p.Nome).HasColumnName("Nome").HasColumnType("varchar").HasMaxLength(100).IsRequired();
             builder.Property(p => p.Descricao).HasColumnName("Descricao").HasColumnType("varchar").HasMaxLength(255);
             builder.Property(p => p.NumeroVagas).HasColumnName("NumeroVagas").HasColumnType("int").IsRequired();

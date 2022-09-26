@@ -1,4 +1,6 @@
-﻿using Gambali.InternalTalent.Infra.DatabaseContext;
+﻿using System;
+using System.Linq;
+using Gambali.InternalTalent.Infra.DatabaseContext;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -35,12 +37,17 @@ namespace Gambali.InternalTalent.WebApi.Configuration
 
         public static IServiceCollection DatabaseConfig(this IServiceCollection services, IConfiguration configuration)
         {
-            services.AddDbContext<ApplicationDbContext>(options =>
-                                                        options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")),
-                                                        optionsLifetime: ServiceLifetime.Transient);
+            services.AddDbContext<ApplicationDbContext>();
             return services;
         }
-
+        public static IApplicationBuilder ApplyPendingMigrations(this IApplicationBuilder app, ApplicationDbContext dbContext)
+        {
+            Console.WriteLine("Verificando Migrations");
+            if (dbContext.Database.GetPendingMigrations().Count() > 0)
+                dbContext.Database.Migrate();
+                
+            return app;
+        }
         public static IApplicationBuilder UseMvcConfiguration(this IApplicationBuilder app)
         {
             app.UseRouting();

@@ -3,76 +3,72 @@ using System;
 using Gambali.InternalTalent.Infra.DatabaseContext;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
+
+#nullable disable
 
 namespace Gambali.InternalTalent.Infra.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220823194551_InitialMigration")]
-    partial class InitialMigration
+    [Migration("20220926104648_InitialMigrations")]
+    partial class InitialMigrations
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
-            modelBuilder
-                .HasAnnotation("Relational:MaxIdentifierLength", 128)
-                .HasAnnotation("ProductVersion", "5.0.17")
-                .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+            modelBuilder.HasAnnotation("ProductVersion", "6.0.9");
 
             modelBuilder.Entity("Gambali.InternalTalent.Domain.Models.Aluno", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasColumnName("Id")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("INTEGER")
+                        .HasColumnName("Id");
 
                     b.Property<string>("Bairro")
                         .HasMaxLength(50)
-                        .HasColumnType("varchar(50)");
+                        .HasColumnType("varchar");
 
                     b.Property<string>("Cidade")
                         .HasMaxLength(50)
-                        .HasColumnType("varchar(50)");
+                        .HasColumnType("varchar");
 
                     b.Property<DateTime>("DataNascimento")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Email")
                         .HasMaxLength(100)
-                        .HasColumnType("varchar(100)");
+                        .HasColumnType("varchar");
 
                     b.Property<string>("Endereco")
                         .HasMaxLength(100)
-                        .HasColumnType("varchar(100)");
+                        .HasColumnType("varchar");
 
                     b.Property<string>("Estado")
                         .HasMaxLength(15)
-                        .HasColumnType("varchar(15)");
+                        .HasColumnType("varchar");
 
                     b.Property<string>("Nome")
                         .IsRequired()
                         .HasMaxLength(100)
-                        .HasColumnType("varchar(100)");
+                        .HasColumnType("varchar");
 
                     b.Property<string>("Telefone")
                         .HasMaxLength(20)
-                        .HasColumnType("varchar(20)");
+                        .HasColumnType("varchar");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Alunos");
+                    b.ToTable("Alunos", (string)null);
                 });
 
             modelBuilder.Entity("Gambali.InternalTalent.Domain.Models.Curso", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasColumnName("Id")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("INTEGER")
+                        .HasColumnName("Id");
 
                     b.Property<bool>("Ativo")
                         .HasColumnType("bit")
@@ -80,13 +76,13 @@ namespace Gambali.InternalTalent.Infra.Migrations
 
                     b.Property<string>("Descricao")
                         .HasMaxLength(255)
-                        .HasColumnType("varchar(255)")
+                        .HasColumnType("varchar")
                         .HasColumnName("Descricao");
 
                     b.Property<string>("Nome")
                         .IsRequired()
                         .HasMaxLength(100)
-                        .HasColumnType("varchar(100)")
+                        .HasColumnType("varchar")
                         .HasColumnName("Nome");
 
                     b.Property<int>("NumeroVagas")
@@ -95,23 +91,22 @@ namespace Gambali.InternalTalent.Infra.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Curso");
+                    b.ToTable("Curso", (string)null);
                 });
 
             modelBuilder.Entity("Gambali.InternalTalent.Domain.Models.Matricula", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasColumnName("Id")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("INTEGER")
+                        .HasColumnName("Id");
 
                     b.Property<int>("AlunoId")
-                        .HasColumnType("int")
+                        .HasColumnType("INTEGER")
                         .HasColumnName("AlunoId");
 
                     b.Property<int>("CursoId")
-                        .HasColumnType("int")
+                        .HasColumnType("INTEGER")
                         .HasColumnName("CursoId");
 
                     b.Property<DateTime?>("DataConclusao")
@@ -128,7 +123,7 @@ namespace Gambali.InternalTalent.Infra.Migrations
 
                     b.HasIndex("CursoId");
 
-                    b.ToTable("Matricula");
+                    b.ToTable("Matricula", (string)null);
                 });
 
             modelBuilder.Entity("Gambali.InternalTalent.Domain.Models.Matricula", b =>

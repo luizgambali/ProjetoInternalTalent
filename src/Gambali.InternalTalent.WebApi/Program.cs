@@ -28,6 +28,8 @@ namespace Gambali.InternalTalent.WebApi
                 {
                     webBuilder.UseStartup<Startup>();
                 });
+
+        
     }
 }
 

@@ -10,9 +10,9 @@ namespace Gambali.InternalTalent.Infra.DatabaseContext
         public DbSet<Aluno> Alunos { get; set; }
         public DbSet<Curso> Cursos { get; set; }
         public DbSet<Matricula> Matriculas { get; set; }
-
-        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
+            optionsBuilder.UseSqlite(@"DataSource=MyApp.db;Cache=Shared");
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

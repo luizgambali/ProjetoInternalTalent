@@ -1,9 +1,11 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
+#nullable disable
+
 namespace Gambali.InternalTalent.Infra.Migrations
 {
-    public partial class InitialMigration : Migration
+    public partial class InitialMigrations : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -11,16 +13,16 @@ namespace Gambali.InternalTalent.Infra.Migrations
                 name: "Alunos",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Nome = table.Column<string>(type: "varchar(100)", maxLength: 100, nullable: false),
+                    Id = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    Nome = table.Column<string>(type: "varchar", maxLength: 100, nullable: false),
                     DataNascimento = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Endereco = table.Column<string>(type: "varchar(100)", maxLength: 100, nullable: true),
-                    Bairro = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: true),
-                    Cidade = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: true),
-                    Estado = table.Column<string>(type: "varchar(15)", maxLength: 15, nullable: true),
-                    Telefone = table.Column<string>(type: "varchar(20)", maxLength: 20, nullable: true),
-                    Email = table.Column<string>(type: "varchar(100)", maxLength: 100, nullable: true)
+                    Endereco = table.Column<string>(type: "varchar", maxLength: 100, nullable: true),
+                    Bairro = table.Column<string>(type: "varchar", maxLength: 50, nullable: true),
+                    Cidade = table.Column<string>(type: "varchar", maxLength: 50, nullable: true),
+                    Estado = table.Column<string>(type: "varchar", maxLength: 15, nullable: true),
+                    Telefone = table.Column<string>(type: "varchar", maxLength: 20, nullable: true),
+                    Email = table.Column<string>(type: "varchar", maxLength: 100, nullable: true)
                 },
                 constraints: table =>
                 {
@@ -31,10 +33,10 @@ namespace Gambali.InternalTalent.Infra.Migrations
                 name: "Curso",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Nome = table.Column<string>(type: "varchar(100)", maxLength: 100, nullable: false),
-                    Descricao = table.Column<string>(type: "varchar(255)", maxLength: 255, nullable: true),
+                    Id = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    Nome = table.Column<string>(type: "varchar", maxLength: 100, nullable: false),
+                    Descricao = table.Column<string>(type: "varchar", maxLength: 255, nullable: true),
                     NumeroVagas = table.Column<int>(type: "int", nullable: false),
                     Ativo = table.Column<bool>(type: "bit", nullable: false)
                 },
@@ -47,10 +49,10 @@ namespace Gambali.InternalTalent.Infra.Migrations
                 name: "Matricula",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    AlunoId = table.Column<int>(type: "int", nullable: false),
-                    CursoId = table.Column<int>(type: "int", nullable: false),
+                    Id = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    AlunoId = table.Column<int>(type: "INTEGER", nullable: false),
+                    CursoId = table.Column<int>(type: "INTEGER", nullable: false),
                     DataInscricao = table.Column<DateTime>(type: "datetime2", nullable: false),
                     DataConclusao = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },

@@ -1,4 +1,5 @@
 using Gambali.InternalTalent.Application.Mapper;
+using Gambali.InternalTalent.Infra.DatabaseContext;
 using Gambali.InternalTalent.WebApi.Configuration;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -46,11 +47,13 @@ namespace Gambali.InternalTalent.WebApi
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ApplicationDbContext dbContext)
         {
             app.UseDeveloperExceptionPage();
             app.UseMvcConfiguration();
             app.UseSwaggerConfig();
+
+            app.ApplyPendingMigrations(dbContext);
         }
     }
 }
