@@ -32,6 +32,6 @@ Strings.PlatformNotSupported_DataSqlClient
 
 Adicione em seu csproj a seguinte instrução:
 
-  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
-    <Exec Command="cp $(OutDir)runtimes/unix/lib/netcoreapp3.1/Microsoft.Data.SqlClient.dll $(OutDir)" />
-  </Target>
+	  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+	    <Exec Command="cp $(OutDir)runtimes/unix/lib/netcoreapp3.1/Microsoft.Data.SqlClient.dll $(OutDir)" />
+	  </Target>
