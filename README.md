@@ -24,3 +24,14 @@ Tecnologias:
 	- Logger
 	- Github
 	- SQL Server
+
+Importante: se você está tentando atualizar o banco de dados com "dotnet ef database update" no linux, e
+está tendo a seguinte mensagem de erro: 
+
+Strings.PlatformNotSupported_DataSqlClient
+
+Adicione em seu csproj a seguinte instrução:
+
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="cp $(OutDir)runtimes/unix/lib/netcoreapp3.1/Microsoft.Data.SqlClient.dll $(OutDir)" />
+  </Target>
